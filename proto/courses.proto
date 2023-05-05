@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "github.com/sergiovenicio/courses/gen";
+
+message Empty {}
+
+message Course {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message CourseCreateRequest {
+    string name = 1;
+    string description = 2;
+}
+
+message FindCourseRequest {
+    string id = 1;
+}
+
+message ListCourseResponse {
+    repeated Course courses = 1;
+}
+
+service CourseService {
+    rpc CreateCourse(CourseCreateRequest) returns (Course) {}
+    rpc FindCourse(FindCourseRequest) returns (Course) {}
+    rpc ListCourses(Empty) returns (ListCourseResponse) {}
+}
